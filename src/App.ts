@@ -22,10 +22,9 @@ class App {
     const router = express.Router();
 
     router.get('/', (req, res, next) => {
-      throw new Error('foobar');
-      // res.json({
-      //   message: 'yo',
-      // });
+      res.json({
+        message: 'yo',
+      });
     });
     this.express.use('/', router);
   }
