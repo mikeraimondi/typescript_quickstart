@@ -1,7 +1,7 @@
-import * as bodyParser from 'body-parser';
-import * as express from 'express';
-import * as path from 'path';
-import * as logger from 'winston';
+import * as bodyParser from "body-parser";
+import * as express from "express";
+import * as path from "path";
+import * as logger from "winston";
 
 class App {
   public express: express.Application;
@@ -21,12 +21,12 @@ class App {
   private routes(): void {
     const router = express.Router();
 
-    router.get('/', (req, res, next) => {
+    router.get("/", (req, res, next) => {
       res.json({
-        message: 'yo',
+        message: "yo",
       });
     });
-    this.express.use('/', router);
+    this.express.use("/", router);
   }
 }
 

@@ -1,22 +1,22 @@
-import 'source-map-support/register';
+import "source-map-support/register";
 
-import * as http from 'http';
-import * as logger from 'winston';
+import * as http from "http";
+import * as logger from "winston";
 
-import App from './App';
+import App from "./App";
 
-logger.info('server starting');
+logger.info("server starting");
 
 const port = normalizePort(process.env.PORT || 3000);
-App.set('port', port);
+App.set("port", port);
 
 const server = http.createServer(App);
 server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+server.on("error", onError);
+server.on("listening", onListening);
 
 function normalizePort(val: number|string): number|string|boolean {
-  const portVal: number = (typeof val === 'string') ? parseInt(val, 10) : val;
+  const portVal: number = (typeof val === "string") ? parseInt(val, 10) : val;
   if (isNaN(portVal)) {
     return val;
   } else if (portVal >= 0) {
@@ -27,16 +27,16 @@ function normalizePort(val: number|string): number|string|boolean {
 }
 
 function onError(error: NodeJS.ErrnoException): void {
-  if (error.syscall !== 'listen') {
+  if (error.syscall !== "listen") {
     throw error;
   }
-  const bind = (typeof port === 'string') ? 'Pipe ' + port : 'Port ' + 'port';
+  const bind = (typeof port === "string") ? "Pipe " + port : "Port " + "port";
   switch (error.code) {
-    case 'EACCES':
+    case "EACCES":
       console.error(`${bind} requires elevated privileges`);
       process.exit(1);
       break;
-    case 'EADDRINUSE':
+    case "EADDRINUSE":
       console.error(`${bind} is already in use`);
       process.exit(1);
       break;
@@ -47,6 +47,6 @@ function onError(error: NodeJS.ErrnoException): void {
 
 function onListening(): void {
   const addr = server.address();
-  const bind = (typeof addr === 'string') ? `pipe ${addr}` : `port ${addr.port}`;
+  const bind = (typeof addr === "string") ? `pipe ${addr}` : `port ${addr.port}`;
   logger.info(`listening on ${bind}`);
 }
