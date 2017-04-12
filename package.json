@@ -22,7 +22,7 @@
   },
   "scripts": {
     "build:live": "nodemon --exec ./node_modules/.bin/ts-node -- ./src/index.ts",
-    "build": "npm run clean && node_modules/.bin/tsc",
+    "build": "npm run clean && ./node_modules/.bin/tsc",
     "clean": "rm -rf dist",
     "start": "npm run build && node dist/index.js"
   }
