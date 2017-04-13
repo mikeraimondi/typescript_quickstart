@@ -6,7 +6,6 @@ import * as winston from "winston";
 class App {
   public express: express.Application;
   public logger: winston.LoggerInstance;
-  // private loggingMiddleware: express.RequestHandler;
 
   constructor() {
     this.express = express();
@@ -24,7 +23,7 @@ class App {
   private middleware(): void {
     this.express.use(this.loggingMiddleware);
     this.express.use(bodyParser.json());
-    this.express.use(bodyParser.urlencoded({extended: false}));
+    this.express.use(bodyParser.urlencoded({ extended: false }));
   }
 
   private loggingMiddleware: express.RequestHandler = (req, res, next): void => {
