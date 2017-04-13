@@ -4,6 +4,7 @@
     "outDir": "dist",
     "alwaysStrict": true,
     "strictNullChecks": true,
+    "noImplicitAny": true,
     "module": "commonjs",
     "sourceMap": true
   },

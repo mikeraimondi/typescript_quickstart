@@ -1,16 +1,15 @@
 import "source-map-support/register";
 
 import * as http from "http";
-import * as logger from "winston";
 
 import App from "./App";
 
-logger.info("server starting");
+App.logger.info("server starting");
 
 const port = normalizePort(process.env.PORT || 3000);
-App.set("port", port);
+App.express.set("port", port);
 
-const server = http.createServer(App);
+const server = http.createServer(App.express);
 server.listen(port);
 server.on("error", onError);
 server.on("listening", onListening);
@@ -48,5 +47,5 @@ function onError(error: NodeJS.ErrnoException): void {
 function onListening(): void {
   const addr = server.address();
   const bind = (typeof addr === "string") ? `pipe ${addr}` : `port ${addr.port}`;
-  logger.info(`listening on ${bind}`);
+  App.logger.info(`listening on ${bind}`);
 }

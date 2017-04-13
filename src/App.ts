@@ -1,21 +1,35 @@
 import * as bodyParser from "body-parser";
 import * as express from "express";
 import * as path from "path";
-import * as logger from "winston";
+import * as winston from "winston";
 
 class App {
   public express: express.Application;
+  public logger: winston.LoggerInstance;
+  // private loggingMiddleware: express.RequestHandler;
 
   constructor() {
     this.express = express();
     this.middleware();
     this.routes();
+    this.logger = new winston.Logger({
+      transports: [
+        new winston.transports.Console({
+          timestamp: true,
+        }),
+      ],
+    });
   }
 
   private middleware(): void {
-    // TODO logger
+    this.express.use(this.loggingMiddleware);
     this.express.use(bodyParser.json());
     this.express.use(bodyParser.urlencoded({extended: false}));
+  }
+
+  private loggingMiddleware: express.RequestHandler = (req, res, next): void => {
+    this.logger.info(`${req.method} "${req.url}"`);
+    next();
   }
 
   private routes(): void {
@@ -30,4 +44,4 @@ class App {
   }
 }
 
-export default new App().express;
+export default new App();
