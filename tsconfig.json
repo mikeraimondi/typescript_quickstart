@@ -2,10 +2,8 @@
   "compilerOptions": {
     "target": "es6",
     "outDir": "dist",
-    "alwaysStrict": true,
-    "strictNullChecks": true,
-    "noImplicitAny": true,
     "module": "commonjs",
+    "strict": true,
     "sourceMap": true
   },
   "include": [
