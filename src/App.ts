@@ -31,12 +31,25 @@ class App {
     next();
   }
 
+  private resolveAfter1() {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve({ message: "yo" });
+      }, 1000);
+    });
+  }
+
+  private async response() {
+    const res = await this.resolveAfter1();
+    return res;
+  }
+
   private routes(): void {
     const router = express.Router();
 
     router.get("/", (req, res, next) => {
-      res.json({
-        message: "yo",
+      this.response().then((resp) => {
+        res.json(resp);
       });
     });
     this.express.use("/", router);
